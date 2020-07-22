@@ -1,0 +1,546 @@
+/* global */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+
+body {
+	position: relative;
+	background-color: #fafafa;
+}
+
+header {
+	margin-top: 55px;
+}
+
+.container {
+	max-width: 960px;
+	margin: auto;
+}
+
+.wrapper {
+}
+
+.border {
+	/* border: solid 1px black; */
+}
+
+.greyborder {
+	border: solid 1px lightgrey;
+}
+
+a {
+	color: navy;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:link {
+
+}
+
+.bblg {
+	border-bottom: solid 1px lightgrey;
+}
+
+
+/* navbar */
+
+.navbar,
+.login-signup,
+.logo-container {
+	display: flex;
+	align-items: center;
+}
+
+.navbar-wrapper {
+	width: 100%;
+	position: fixed;
+	top: 0;
+	background-color: white;
+	height: 55px; 
+}
+
+.navbar {
+	margin: auto;
+	max-width: 960px;
+	/*
+	width: 100%;
+	position: fixed;
+	top: 0;
+	background-color: white;
+	padding: 10px;
+	height: 55px; 
+	*/
+	align-items: center;
+	justify-content: space-between;
+}
+
+.login-signup {
+	padding: 10px;
+	width: 160px;
+	align-items: center;
+	justify-content: space-around;
+	color: #0095f6;
+	font-weight: bold;
+}
+
+.login-signup div {
+}
+
+button {
+	font-size: .9rem;
+	display: flex;
+	align-items: center;
+	padding: 8px;
+	background-color: #0095f6;
+	color: white;
+	border-radius: 4px;
+	font-weight: bold;
+	margin-right: 5px;
+	border: solid .1 transparent;
+}
+
+.logo {
+	width: 103px;
+	height: auto;
+	margin-left: 5px;
+}
+
+
+input {
+	text-align: center;
+	margin-left: 20px;
+	height: 30px;
+	width: 220px;
+	background-image: url("../images/search.png");
+	background-size: 12px;
+	background-repeat: no-repeat;
+	background-position: 35% 50%;
+	background-color: #fafafa;
+}
+
+input:focus {
+	background-image: none;
+}
+
+
+
+/* PROFILE BAR */
+
+.pic-container {
+	margin-right: 25px;
+}
+
+.profile-pic {
+	height: 77px;
+	width: 77px;
+	background-image: url(../images/profile.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	border-radius: 50px;
+
+}
+/*
+.wrapper-1 {
+	display: inline-flex;
+	height: 77x;
+	padding-top: 25px;
+	padding-left: 15px;
+}
+*/
+h1 {
+	margin-bottom: 5px;
+	font-weight: normal;
+	font-size: 1.6rem;
+}
+
+h3 {
+	margin-bottom: 5px;
+}
+
+.badge {
+	margin-left: 5px;
+}
+
+
+.wrapper-2 {
+	margin-top: 20px;
+	font-size: .8rem;
+	padding-left: 15px;
+	padding-bottom: 0px;
+	
+} 
+
+
+.wrapper-3 {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding: 0px;
+	margin-bottom: 10px;
+	
+}
+
+
+.wrapper-3 ul {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	align-items: center;
+	list-style-type: none;
+}
+
+.wrapper-3 ul li {
+
+}
+
+
+.grey-li {
+	font-size: .9rem;
+	color: grey;
+}
+
+
+/* GRID */
+
+.grid-container {
+	display: grid;
+	grid-template-areas: "picture username username username username username"
+						 "name name name name name name"
+						 "posts posts posts posts posts posts";
+	grid-template-rows: 90px 90px 90px;
+	grid-template-columns: repeat(6, 1fr);
+}
+
+
+.grid-item-1 {
+	grid-area: picture;
+	padding-top: 25px;
+	padding-left: 15px;
+}
+
+.grid-item-2 {
+	padding-top: 25px;
+	grid-area: username;	
+}
+
+.grid-item-3 {
+	grid-area: name;	
+	padding-top: 10px;
+}
+
+.grid-item-4 {
+	grid-area: posts;
+}
+
+/* MAIN */
+
+
+.navbar2 {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	list-style-type: none;
+	margin-bottom: 15px;
+}
+
+.navbar2 li {
+	display: flex;
+	justify-content: center;
+}
+.magic {
+	display: none;
+	padding-left: 10px;
+	padding-top: 2px;
+	font-size: .8rem;
+	text-transform: uppercase;
+}
+
+.photo-gallery {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 2px;
+}
+
+.photo {
+	height: 10em;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.photo:hover {
+	box-shadow: inset 0 0 0 1000px rgba(0,0,0,.6);
+}
+
+.p2,
+.p3 {
+	background-image: url("../images/profile.jpg");
+}
+
+.p1 {
+	background-image: url("../images/movieicon.png"), url("https://picsum.photos/200");
+	background-position: 98% 2%, center;
+	background-size: 25px, cover;
+	background-repeat: no-repeat, no-repeat;
+}
+
+/* Related Accounts */
+
+.related-accounts {
+	padding-top: 15px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.ra-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+span {
+	color: #0095f6;
+	font-weight: bold;
+}
+
+.ra-gallery {
+	display: flex;
+	align-content: center;
+}
+
+.ra-gallery-unit {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	width: 180px;
+	padding: 10px;
+	height: 200px;
+
+	background-image: url('../images/x.png');
+	background-position: 95% 5%;
+	background-size: 11px;
+	background-repeat: no-repeat;
+}
+
+.ra-photo {
+	background-image: url('../images/beyonce.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: none;
+	border-radius: 50px;
+	height: 77px;
+	width: 77px;
+}
+
+.ra-name {
+	color: grey;
+}
+
+.ra-button {
+	font-size: .9rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 5px;
+	background-color: #0095f6;
+	color: white;
+	width: 140px;
+	border-radius: 5px;
+	font-weight: bold;
+	border: solid .1 transparent;
+}
+
+/* footer */
+
+.footer {
+	height: 150px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.footer ul {
+	width: 310px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	list-style-type: none;	
+}
+
+.footer ul li {
+	padding: 5px;
+	font-size: .7rem;
+	color: navy;
+	font-weight: 600;
+}
+
+.copy {
+	font-size: .7rem;
+	font-weight: bold;
+	color: grey;
+	padding: 10px;
+}
+
+/* media query */
+
+@media (min-width: 736px) {
+	
+	.photo-gallery {
+		grid-gap: 20px;
+	}
+
+	.photo {
+		min-height: 220px;
+	}
+	.magic {
+		display: flex;
+	}
+
+
+	.profile-pic {
+		height: 150px;
+		width: 150px;
+		border-radius: 50%;
+	}
+
+	/* responsive GRID */
+
+	.bblg {
+		border: none;
+	} 
+
+	.grid-container {
+		display: grid;
+		grid-template-areas: "picture username username "
+							 "picture posts posts"
+							 "picture name name";
+
+		grid-template-rows: 70px 70px 70px;
+		grid-template-columns: repeat(3, 1fr);
+		margin: 0px;
+		padding: 0px;
+		border-bottom: solid 1px lightgrey;
+	}
+
+
+	.grid-item-1 {
+		grid-area: picture;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 0px;
+		margin: 0px;
+	}
+
+	.grid-item-2 {
+		grid-area: username;
+		display: flex;
+		align-items: flex-end;	
+		padding: 0px;
+		margin: 0px;
+	}
+
+	.grid-item-3 {
+		grid-area: name;	
+		padding: 0px;
+		margin: 0px;
+	}
+
+	.grid-item-4 {
+		grid-area: posts;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		padding: 0px;
+		margin: 0px;
+	}
+
+	.main-button {
+		font-size: .9rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 80px;
+		padding: 6px;
+		margin-left: 20px;
+		background-color: #0095f6;
+		color: white;
+		border-radius: 4px;
+		font-weight: bold;
+		margin-right: 5px;
+		border: solid .1 transparent;
+	}
+
+	.wrapper-3 ul {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		list-style-type: none;
+		padding-right: 40px;
+	}
+
+	.wrapper-3 ul li {
+		padding-right: 5px;
+		color: black;
+	}
+
+	.main {
+		margin-top: 20px;
+	}
+
+	.navbar2 {
+		margin: auto;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+		list-style-type: none;
+		margin-bottom: 20px;
+		width: 420px;
+	}
+
+	.navbar2 li {
+		display: flex;
+		justify-content: center;
+	}
+
+	.related-accounts {
+		padding: 15px;
+		margin: auto;
+		background-color: white;
+		overflow: hidden;
+	}
+
+	.ra-gallery-unit {
+		
+	}
+
+	.footer {
+		align-items: flex-start;
+		justify-content: flex-end;
+	}
+
+	.footer ul {
+		width: 100%;
+	}
+}
+
+@media (max-width: 690px) {
+
+	#ra-gallery-unit-4 {
+		display: none;
+	}
+}
+
