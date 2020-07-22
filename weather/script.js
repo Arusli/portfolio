@@ -10,7 +10,7 @@ let h2 = document.querySelector('h2');
 // http://api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={your api key}
 
 //API variables
-const url = 'http://api.openweathermap.org/data/2.5/weather';
+const url = 'https://api.openweathermap.org/data/2.5/weather';
 const apiKey = '3c3ef70f976ee67df3739b2782ffff6c';
 const apiKeyString = '&appid=' + apiKey;
 const countryCode = 'us';
