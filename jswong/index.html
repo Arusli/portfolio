@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Wong</title>
+    <link rel='stylesheet' href='style.css'>
+</head>
+<body>
+    <header>
+        <nav class='navbar'><h3 class="logo" onclick="toggleLogo()">J's</h4></nav>
+        <div class='burger-container' onclick="toggleNav()">
+        <svg class='burger' viewBox="0 0 100 80" width="40" height="40">
+            <rect width="100" height="20"></rect>
+            <rect y="30" width="100" height="20"></rect>
+            <rect y="60" width="100" height="20"></rect>
+          </svg>
+        </div> 
+        <nav class='sidebar'>
+            <ul class="sidebar-ul"> 
+                <li class="sidebar-li" class="menu-li" onclick="toggleMenu()">Menu</li>
+                <li class="sidebar-li" class="conatct-li" onclick="toggleContact()">Contact</li>
+                <li class="sidebar-li" class="yelp-li" onclick="toggleYelp()">Home</li></a>
+            </ul>
+
+        </nav>
+    </header>
+    <main>
+        <div class="home">
+        <h1>J's</h1>
+        </div>
+        
+        <div class="menu">
+            <h2>MENU</h2>
+            <h4>SOUPS</h4>
+            <ul>
+                <li>Wonton Soup</li>
+                <li>Hot n Sour Soup</li>
+                <li>Egg Drop Soup</li>
+            </ul>    
+            <h4>APPS</h4> 
+            <ul>
+                <li>Fried Chicken Wings</li>
+                <li>Crab Rangoons</li>
+                <li>Pork Dumplings</li>
+                <li>Shrimp Dumplings</li>
+                <li>Spring Rolls</li>
+            </ul>
+            <h4>RICE</h4>
+            <ul>
+                <li>White Rice</li>
+                <li>Pork Fried Rice</li>
+                <li>Vegetable Fried Rice</li>
+                <li>Shrimp Fried Rice</li>
+            </ul> 
+            <h4>ENTREES</h4> 
+            <ul>
+                <li>Beef and Broccoli</li>
+                <li>General Tso's Chicken</li>
+                <li>Sweet and Sour Chicken</li>
+                <li>Vegetable Lo Mein</li>
+                <li>Shrimp Lo Mein</li>
+                <li>Beef Lo Mein</li>
+                <li>Chicken Lo Mein</li>
+                <li>Singapore Rice Noodles</li>
+                <li>Kung Pao Chicken</li>
+                <li>Chicken Chow Mein</li>
+                <li>Beef Chow Mein</li>
+                <li>Chicken and Broccoli</li>
+                <li>Shrimp and Vegetables</li>
+            </ul>
+        </div>
+
+        <div class="contact">
+            <h2>CONTACT</h2>
+            <p>J's Wong</p>
+            <p>717 Franklin Ave</p>
+            <p>Brooklyn, NY 11216</p>
+            <p>(646) 258-3936</p>
+        </div>
+
+    </main>
+
+
+<script src='app.js'></script>
+</body>
+</html>
