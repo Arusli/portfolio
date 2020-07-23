@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman</title>
+    <link rel='stylesheet' href='styles.css'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- https://sketch.io/sketchpad/ -->
+        <div class='top'>
+            <h3>Hidden Word:</h3>
+            <div class='word-container'>
+                <!-- <div class='blank'></div>
+                <div class='blank'></div>
+                <div class='blank'>A</div>
+                <div class='blank'></div>
+                <div class='blank'>E</div>
+                <div class='blank'>N</div>
+                <div class='blank'></div>
+                <div class='blank'></div> -->
+            </div>
+        </div> 
+        <!-- end score div -->
+        <div class='board'>
+            <div class='hangman'>
+                <img src='images/gallows.png' id='gallows'>
+                <img src='images/head.png' id='head' class='hide'>
+                <img src='images/face.png' id='face' class='hide'>
+                <img src='images/torso.png' id='torso' class='hide'>
+                <img src='images/leftarm.png' id='leftarm' class='hide'>
+                <img src='images/rightarm.png' id='rightarm' class='hide'>
+                <img src='images/leftleg.png' id='leftleg' class='hide'>
+                <img src='images/rightleg.png' id='rightleg' class='hide'>           
+
+            </div>
+        </div>
+       
+    </div>
+    <div class='container'>
+        
+            <div class='letters1'>
+                <div class='letter'>A</div>
+                <div class='letter'>B</div>
+                <div class='letter'>D</div>
+                <div class='letter'>C</div>
+                <div class='letter'>E</div>
+                <div class='letter'>F</div>
+                <div class='letter'>G</div>
+                <div class='letter'>H</div>
+                <div class='letter'>I</div>
+                <div class='letter'>J</div>
+                <div class='letter'>K</div>
+                <div class='letter'>L</div>
+                <div class='letter'>M</div>
+            </div>
+            <div class='letters2'>
+                <div class='letter'>N</div>
+                <div class='letter'>O</div>
+                <div class='letter'>P</div>
+                <div class='letter'>Q</div>
+                <div class='letter'>R</div>
+                <div class='letter'>S</div>
+                <div class='letter'>T</div>
+                <div class='letter'>U</div>
+                <div class='letter'>V</div>
+                <div class='letter'>W</div>
+                <div class='letter'>X</div>
+                <div class='letter'>Y</div>
+                <div class='letter'>Z</div>
+            </div>
+    </div>
+    
+<script src='app.js'></script>
+</body>
+</html>

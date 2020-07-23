@@ -1,0 +1,178 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    height: 100vh;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;;
+}
+
+h3 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.top {
+    margin-top: 20px;
+}
+.word-container {
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.blank {
+    color: white;
+    font-size: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    width: 45px;
+    margin: 5px;
+    background-color:black;
+}
+
+/* Hangman Images */
+.board {
+    padding: 10px;
+    margin: 10px;
+}
+
+.hangman {
+    position: relative;
+    border: solid 1px;
+    height: 300px;
+    width: 400px;
+}
+
+#gallows {
+    position: absolute;
+    top: 5px;
+    left: 70px;
+    width: 250px;
+    height: 300px;
+}
+
+#head {
+    position: absolute;
+    right: 80px;
+    top: 60px;
+    width: 50px;
+    height: 50px;
+}
+
+#face {
+    position: absolute;
+    right: 85px;
+    top: 65px;
+    width: 40px;
+    height: 35px;
+}
+
+#torso {
+    position: absolute;
+    right: 55px;
+    top: 100px;
+    width: 100px;
+    height: 100px;
+}
+
+#leftarm {
+    position: absolute;
+    right: 70px;
+    top: 40px;
+    width: 100px;
+    height: 200px;
+}
+
+#rightarm {
+    position: absolute;
+    right: 55px;
+    top: 90px;
+    width: 50px;
+    height: 80px;    
+}
+
+#leftleg {
+    position: absolute;
+    right: 70px;
+    top: 150px;
+    width: 100px;
+    height: 100px;
+}
+
+#rightleg {
+    position: absolute;
+    right: 40px;
+    top: 150px;
+    width: 100px;
+    height: 100px;
+}
+
+/* End Hangman Images */
+
+
+.score {
+    height: 25vh;
+    text-align: center;
+}
+
+.container {
+    height: 25vh;
+    font-size: 30px;
+    margin: 20px;
+    height: 20vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.letters1 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.letters2 {
+    margin-top: 10px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container div div:hover {
+    color: red;
+    font-size: 36px;
+}
+
+.letters1 div {
+    padding: 6px;
+    transition: .6s;
+    margin-right: 6px;
+    margin-left: 6px;
+    cursor: crosshair;
+}
+
+.letters2 div {
+    padding: 6px;
+    transition: .6s;
+    margin-right: 6px;
+    margin-left: 6px;
+    cursor: crosshair;
+}
+
+.hide {
+    visibility: hidden;
+    cursor: none;
+}
+
+.show {
+    visibility: visible;
+}
