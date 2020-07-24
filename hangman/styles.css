@@ -147,20 +147,12 @@ h3 {
     justify-content: space-between;
 }
 
-.container div div:hover {
+.letter:hover {
     color: red;
     font-size: 36px;
 }
 
-.letters1 div {
-    padding: 6px;
-    transition: .6s;
-    margin-right: 6px;
-    margin-left: 6px;
-    cursor: crosshair;
-}
-
-.letters2 div {
+.letter {
     padding: 6px;
     transition: .6s;
     margin-right: 6px;
