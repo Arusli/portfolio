@@ -1,28 +1,69 @@
-//initiates game
-let remainingGuesses = 6;
-//
-function checkGame(){
-    //to check winner, make a new array of the innerHTML with a forloop and push. 
-    // then check array length against original word length.
-    let winnerArray = []    
-    for (i=0;i<wordContainer.children.length;i++){
-        if (wordContainer.children[i].innerHTML !== '') {
-            winnerArray.push(wordContainer.children[i].innerHTML)
-        }
-    }
-    if (winnerArray.length === hiddenWord.length) {
-       function winneralert() {
-           alert('You win! The hidden word was ' + hiddenWord + '.');
-       }
-       setTimeout(winneralert, 500);
-}
-}
-//intializes global variable for word array
-let wordArray;
+// initialize game
+// select random hidden word from an array or from an api.
+// display hidden word blanks, dependent on hiddenword.length.
+// game begins, player may now click/select letters from word bank.
+// check if clicked letter is correct (matches hiddenword) via innerHTML property.
+// if letter is correct, reveal matching letters in the Hidden word.
+// if letter is incorrect, remainingGuesses -= 1, un-hide one portion of the hangman body.
+//if remainingGuesses = 0, player loses, game ends.
+// if hidden word is revealed before remainingGuesses = 0, player wins, game ends.
+// 
+// TBD: provide reset option, which reinitializes game.
 
-//select word
-let hiddenWord = 'cannoli'.toUpperCase();
+
+//initiates game
+let remainingGuesses = 7;
+//
+
+//intializes global variable, that is created by making an array out of the hiddenWord.
+let hiddenWordAsArray;
+
+//initializes var hiddenWord to be defined later by random number or api.
+let hiddenWord;
+
+//creates objects for the body parts of the hangman
+let head = document.querySelector('#head');
+let face = document.querySelector('#face');
+let torso = document.querySelector('#torso');
+let leftarm = document.querySelector('#leftarm');
+let rightarm = document.querySelector('#rightarm');
+let leftleg = document.querySelector('#leftleg');
+let rightleg = document.querySelector('#rightleg');
+
+
+
+//NEED HELP WITH THIS. 
+//THIS ASYNC TASK BREAKS MY CODE BECAUSE THE VAR HIDDENWORD DEPENDS ON BEING DEFINED IN THIS ASYNC FUNCTION.
+
+//fetches random word from api
+// let url = 'https://random-word-api.herokuapp.com//word?number=1'
+// let url2 = 'https://random-word-api.herokuapp.com/all/?swear=0'
+
+//this is an ascynchronus request which breaks my code... how to deal with this?
+// async function makeRequest() {
+//     let response = await fetch(url2);
+//     let jsonObject = await response.json();
+//     hiddenword = jsonObject[0].toUpperCase();
+//     console.log(jsonObject);
+//     console.log(hiddenword);
+// }
+
+
+//
+
+
+//Alternative random word generator: Downloaded full json object from the api, saved as a js variable.
+//selects random word from wordlist.js
+function selectHiddenWord() {
+    const randomNum = Math.floor(Math.random() * Math.floor(wordList.length));
+    hiddenWord = wordList[randomNum].toUpperCase();
+  }
+
+selectHiddenWord()
 console.log(hiddenWord);
+
+// makeRequest();
+
 
 //create blanks
 let wordContainer = document.querySelector('.word-container');
@@ -41,18 +82,41 @@ createBlanks();
 //check and hide letter
 //convert hiddenword to an array?
 function convertArray(){
-    wordArray = Array.from(hiddenWord);
-    console.log(wordArray);
+    hiddenWordAsArray = Array.from(hiddenWord);
+    console.log(hiddenWordAsArray);
 }
 
 convertArray();
 
-//check letter
 
+//GAME IS NOW INITIALIZED NEXT UP: FUNCTIONS
+//GAME FUNCTIONS
+
+//checks game for a winner
+function checkGame(){
+    //to check winner, make a new array of the innerHTML with a forloop and push. 
+    // then check array length against original word length.
+    let winnerArray = []    
+    for (i=0;i<wordContainer.children.length;i++){
+        if (wordContainer.children[i].innerHTML !== '') {
+            winnerArray.push(wordContainer.children[i].innerHTML)
+        }
+    }
+    if (winnerArray.length === hiddenWord.length) {
+       function winneralert() {
+           alert('You win! The hidden word was ' + hiddenWord + '.');
+       }
+       document.removeEventListener('click', hideLetter);
+       setTimeout(winneralert, 500);
+}
+}
+
+
+//checks the hiddenWord array for correct letter, to be called during the hide letter function.
 function checkLetter(e) {
-    if (wordArray.includes(e.target.innerHTML)) {
-        for (i=0; i<wordArray.length; i++) {
-            if (wordArray[i] === e.target.innerHTML) {
+    if (hiddenWordAsArray.includes(e.target.innerHTML)) {
+        for (i=0; i<hiddenWordAsArray.length; i++) {
+            if (hiddenWordAsArray[i] === e.target.innerHTML) {
                 wordContainer.children[i].innerHTML = e.target.innerHTML
             }
         }
@@ -62,7 +126,7 @@ function checkLetter(e) {
     }
 };
 
-// Hides target letter on click.
+// Hides target letter on click, then performs the other functions of the game.
 function hideLetter(e) {
     if (e.target.className === 'letter') {
         e.target.className = 'letter hide';
@@ -79,17 +143,14 @@ let h3 = document.querySelector('h3');
 h3.style.color = 'red';
 //
 
-let head = document.querySelector('#head');
-let face = document.querySelector('#face');
-let torso = document.querySelector('#torso');
-let leftarm = document.querySelector('#leftarm');
-let rightarm = document.querySelector('#rightarm');
-let leftleg = document.querySelector('#leftleg');
-let rightleg = document.querySelector('#rightleg');
+
+//checks the number of remaining guesses and 'draws' hangman accordingly
 
 function drawHangman() {
-    if (remainingGuesses === 5) {
+    if (remainingGuesses === 6) {
         head.className = 'show';
+    }
+    if (remainingGuesses === 5) {
         face.className = 'show';
     }
     if (remainingGuesses === 4) {
@@ -106,25 +167,11 @@ function drawHangman() {
     }
     if (remainingGuesses === 0) {
         rightleg.className = 'show';
-        setTimeout(()=>{alert('You lost. Better luck next time.')}, 500);        
+        document.removeEventListener('click', hideLetter);
+        setTimeout(()=>{alert('You lost. The hidden word was ' + hiddenWord + '.')}, 500);        
     }
 }
 
-//test
-// drawHangman();
 
 
-//
-
-
-// initialize game
-// select random hidden word from an array or from an api.
-// display hidden word blanks, dependent on hiddenword.length.
-// game begins, player may now click/select letters from word bank.
-// check if clicked letter is correct (matches hiddenword) via innerHTML property.
-// if letter is correct, reveal matching letters in the Hidden word.
-// if letter is incorrect, remainingGuesses -= 1, un-hide one portion of the hangman body.
-// if hidden word is revealed before remainingGuesses = 0, player wins, game ends.
-// if remainingGuesses = 0, player loses, game ends.
-// provide reset option, which reinitializes game.
 
