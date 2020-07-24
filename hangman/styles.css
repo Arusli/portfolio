@@ -176,3 +176,18 @@ h3 {
 .show {
     visibility: visible;
 }
+
+#reset { 
+    position: absolute;
+    top: 15vh; 
+}
+
+#message {
+    padding: 50px;
+    font-size: 1.5rem;
+    color: black;
+    background-color: white;
+    border-radius: 10px;
+    border: 4px solid purple;
+    cursor: pointer;
+}

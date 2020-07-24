@@ -31,6 +31,11 @@ let leftleg = document.querySelector('#leftleg');
 let rightleg = document.querySelector('#rightleg');
 
 
+//selectors for necessary elements
+let message = document.querySelector('#message');
+const letters1 = document.querySelector('.letters1');
+const letters2 = document.querySelector('.letters2');
+let wordContainer = document.querySelector('.word-container');
 
 //NEED HELP WITH THIS. 
 //THIS ASYNC TASK BREAKS MY CODE BECAUSE THE VAR HIDDENWORD DEPENDS ON BEING DEFINED IN THIS ASYNC FUNCTION.
@@ -65,8 +70,8 @@ console.log(hiddenWord);
 // makeRequest();
 
 
-//create blanks
-let wordContainer = document.querySelector('.word-container');
+//create blanks: this adds children (class='blank') to the word-container div.
+// these are the blank spots that represent the hidden word, and are revealed with correct guesses.
 
 function createBlanks() {
     for (i=0; i<hiddenWord.length; i++) {
@@ -104,7 +109,8 @@ function checkGame(){
     }
     if (winnerArray.length === hiddenWord.length) {
        function winneralert() {
-           alert('You win! The hidden word was ' + hiddenWord + '.');
+           message.className = 'show';
+           message.innerHTML = 'You win! The hidden word was ' + hiddenWord + '.' + '<br>New Game?';
        }
        document.removeEventListener('click', hideLetter);
        setTimeout(winneralert, 500);
@@ -147,6 +153,15 @@ h3.style.color = 'red';
 //checks the number of remaining guesses and 'draws' hangman accordingly
 
 function drawHangman() {
+    if (remainingGuesses === 7) {
+        head.className = 'hide';
+        face.className = 'hide';
+        torso.className = 'hide';
+        leftarm.className = 'hide';
+        rightarm.className = 'hide';
+        leftleg.className = 'hide';
+        rightleg.className = 'hide';
+    }
     if (remainingGuesses === 6) {
         head.className = 'show';
     }
@@ -168,10 +183,39 @@ function drawHangman() {
     if (remainingGuesses === 0) {
         rightleg.className = 'show';
         document.removeEventListener('click', hideLetter);
-        setTimeout(()=>{alert('You lost. The hidden word was ' + hiddenWord + '.')}, 500);        
+        function alertLoser(){
+            message.className = 'show';
+            message.innerHTML = 'You lost. The hidden word was ' + hiddenWord + '.' + '<br>New Game?';
+        }
+        setTimeout(alertLoser, 500);        
     }
 }
 
 
+//resets game
+function reset(){
+    if (message.className === 'show') {
+        message.className = 'hide';
+        message.innerHTML = '';
+        remainingGuesses = 7;
+        wordContainer.innerHTML = '';
+        drawHangman();
+        selectHiddenWord();
+        console.log(hiddenWord);
+        createBlanks();
+        convertArray();
+        message.className = 'hide';
+        function showAlphabet(){
+            for (let element of letters1.children) {
+                element.className = 'letter';
+            }
+            for (let element of letters2.children) {
+                element.className = 'letter';
+            }
+        }
+        showAlphabet();
+        document.addEventListener('click', hideLetter);   
+    }
+} //end reset()
 
 
