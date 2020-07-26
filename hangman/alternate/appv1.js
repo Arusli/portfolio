@@ -22,7 +22,6 @@ let hiddenWordAsArray;
 let hiddenWord;
 
 //creates objects for the body parts of the hangman
-let hangmanBody = document.querySelector('.hangman').children; // hangmanBody[0] = gallows
 let head = document.querySelector('#head');
 let face = document.querySelector('#face');
 let torso = document.querySelector('#torso');
@@ -31,59 +30,49 @@ let rightarm = document.querySelector('#rightarm');
 let leftleg = document.querySelector('#leftleg');
 let rightleg = document.querySelector('#rightleg');
 
+
 //selectors for necessary elements
 let message = document.querySelector('#message');
 const letters1 = document.querySelector('.letters1');
 const letters2 = document.querySelector('.letters2');
 let wordContainer = document.querySelector('.word-container');
 
+//NEED HELP WITH THIS. 
+//THIS ASYNC TASK BREAKS MY CODE BECAUSE THE VAR HIDDENWORD DEPENDS ON BEING DEFINED IN THIS ASYNC FUNCTION.
+
+//fetches random word from api
+// let url = 'https://random-word-api.herokuapp.com//word?number=1'
+// let url2 = 'https://random-word-api.herokuapp.com/all/?swear=0'
+
+//this is an ascynchronus request which breaks my code... how to deal with this?
+// async function makeRequest() {
+//     let response = await fetch(url);
+//     let jsonObject = await response.json();
+//     hiddenword = jsonObject[0].toUpperCase();
+//     console.log(jsonObject);
+//     console.log(hiddenword);
+// }
 
 
-// fetches random word from api
-let url = 'https://random-word-api.herokuapp.com//word?number=1'
-
-
-
-startGame();
-
-
-
+//
 
 
 //Alternative random word generator: Downloaded full json object from the api, saved as a js variable.
 //selects random word from wordlist.js
-// function selectHiddenWord() {
-//     const randomNum = Math.floor(Math.random() * Math.floor(wordList.length));
-//     hiddenWord = wordList[randomNum].toUpperCase();
-//   }
-// selectHiddenWord()
-// console.log(hiddenWord);
+function selectHiddenWord() {
+    const randomNum = Math.floor(Math.random() * Math.floor(wordList.length));
+    hiddenWord = wordList[randomNum].toUpperCase();
+  }
+
+selectHiddenWord()
+console.log(hiddenWord);
+
 // makeRequest();
 
 
-
-//GAME FUNCTIONS
-
-//requests api, converts response to json, stores as hiddenWord, creates blanks.
-//the await blocks the code within the function while code outside runs
-//this allows hiddenword assinged the value BEFORE calling the functions that require it.
-//which was the problem i had in the earlier version.
-async function makeRequest() {
-    let response = await fetch(url);
-    let jsonObject = await response.json();
-    hiddenWord = jsonObject[0].toUpperCase();
-    console.log(jsonObject);
-    createBlanks();
-    convertArray();
-}
-
-//starts game
-function startGame() {
-    makeRequest();
-}
-
 //create blanks: this adds children (class='blank') to the word-container div.
 // these are the blank spots that represent the hidden word, and are revealed with correct guesses.
+
 function createBlanks() {
     for (i=0; i<hiddenWord.length; i++) {
         wordContainer.appendChild(document.createElement('div'))
@@ -93,6 +82,7 @@ function createBlanks() {
     }
 }
 
+createBlanks();
 
 //check and hide letter
 //convert hiddenword to an array?
@@ -101,14 +91,16 @@ function convertArray(){
     console.log(hiddenWordAsArray);
 }
 
+convertArray();
 
+
+//GAME IS NOW INITIALIZED NEXT UP: FUNCTIONS
+//GAME FUNCTIONS
 
 //checks game for a winner
 function checkGame(){
-    //to check winner, make a new array of the filled in blanks of wordContainer.
-    //fill array with a forloop and push. 
-    //then check array length against original word length.
-    //if array lengths match, that means word has been solved.
+    //to check winner, make a new array of the innerHTML with a forloop and push. 
+    // then check array length against original word length.
     let winnerArray = []    
     for (i=0;i<wordContainer.children.length;i++){
         if (wordContainer.children[i].innerHTML !== '') {
@@ -118,11 +110,11 @@ function checkGame(){
     if (winnerArray.length === hiddenWord.length) {
        function winneralert() {
            message.className = 'show';
-           message.innerHTML = 'You win! The hidden word was ' + '<a href="https://www.google.com/search?q=' + hiddenWord + '+definition" target="_blank">' + hiddenWord + '</a>' + '.' + '<div onclick="reset()" style="margin-top:20px; background-color: pink; cursor: pointer;"><a style="color: purple; font-size: 2rem; font-weight: bold;">New Game?</a></div>';
+           message.innerHTML = 'You win! The hidden word was ' + hiddenWord + '.' + '<br>New Game?';
        }
        document.removeEventListener('click', hideLetter);
        setTimeout(winneralert, 500);
-    }
+}
 }
 
 
@@ -149,16 +141,26 @@ function hideLetter(e) {
         checkGame();
     }
 }
-
 document.addEventListener('click', hideLetter);
 
 
+//test
+let h3 = document.querySelector('h3');
+h3.style.color = 'red';
+//
+
+
 //checks the number of remaining guesses and 'draws' hangman accordingly
+
 function drawHangman() {
     if (remainingGuesses === 7) {
-       for (i=1; i<hangmanBody.length; i++) {
-           hangmanBody[i].className = 'hide';
-       }
+        head.className = 'hide';
+        face.className = 'hide';
+        torso.className = 'hide';
+        leftarm.className = 'hide';
+        rightarm.className = 'hide';
+        leftleg.className = 'hide';
+        rightleg.className = 'hide';
     }
     if (remainingGuesses === 6) {
         head.className = 'show';
@@ -183,24 +185,12 @@ function drawHangman() {
         document.removeEventListener('click', hideLetter);
         function alertLoser(){
             message.className = 'show';
-            message.innerHTML = 'You lost. The hidden word was ' + '<a href="https://www.google.com/search?q=' + hiddenWord + '+definition" target="_blank">' + hiddenWord + '</a>' + '.' + '<div onclick="reset()" style="margin-top:20px; background-color: pink; cursor: pointer;"><a style="color: purple; font-size: 2rem; font-weight: bold;">New Game?</a></div>';
+            message.innerHTML = 'You lost. The hidden word was ' + hiddenWord + '.' + '<br>New Game?';
         }
         setTimeout(alertLoser, 500);        
     }
 }
 
-//resets the alphabet 
-function showAlphabet(){
-    for (let element of letters1.children) {
-        element.className = 'letter';
-        element.style.transition = '.6s'
-
-    }
-    for (let element of letters2.children) {
-        element.className = 'letter';
-        element.style.transition = '.6s'
-    }
-}
 
 //resets game
 function reset(){
@@ -210,20 +200,26 @@ function reset(){
         remainingGuesses = 7;
         wordContainer.innerHTML = '';
         drawHangman();
-        makeRequest();
+        selectHiddenWord();
+        console.log(hiddenWord);
+        createBlanks();
+        convertArray();
         message.className = 'hide';
+        function showAlphabet(){
+            for (let element of letters1.children) {
+                element.className = 'letter';
+            }
+            for (let element of letters2.children) {
+                element.className = 'letter';
+            }
+        }
         showAlphabet();
         document.addEventListener('click', hideLetter);   
     }
 } //end reset()
 
 
-//Bug: after one playthrough, the transition effect wears off on some of the alphabet. why?
-//I think that after clicking letters, they do not respawn with their transition property intact. why?
-//For some reason the alphabet (.letter) loses its transition property after re-classifying
-//Solution: Reapply inline style transition in showAlphabet() function.
-
-//Bug: api problem
-//solution: Declare createBlanks() and convertArray() inside the async function, thus making them
-//await the value of hiddenWord before being called.
+//bugs noticed: after one playthrough, the transition effect wears off on some of the alphabet. why?
+// answer: I think that after clicking letters, they do not respawn with their transition property intact. why?
+//bugs noticed: api problem
 

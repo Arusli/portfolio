@@ -159,6 +159,14 @@ h3 {
     margin-left: 6px;
     cursor: crosshair;
 }
+/* 
+.letters2 div {
+    padding: 6px;
+    transition: .6s;
+    margin-right: 6px;
+    margin-left: 6px;
+    cursor: crosshair;
+} */
 
 .hide {
     visibility: hidden;
@@ -181,5 +189,5 @@ h3 {
     background-color: white;
     border-radius: 10px;
     border: 4px solid purple;
-    cursor: pointer;
+    text-align: center;
 }
