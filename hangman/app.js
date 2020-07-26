@@ -7,15 +7,13 @@
 // if letter is incorrect, remainingGuesses -= 1, un-hide one portion of the hangman body.
 //if remainingGuesses = 0, player loses, game ends.
 // if hidden word is revealed before remainingGuesses = 0, player wins, game ends.
-// 
-// TBD: provide reset option, which reinitializes game.
+// Game End Screen provides Reset Option, which reinitializes game.
 
 
-//initiates game
+//establish remaining guesses
 let remainingGuesses = 7;
-//
 
-//intializes global variable, that is created by making an array out of the hiddenWord.
+//intializes global variable, that is later assigned the value of an array made out of the hiddenWord's letters.
 let hiddenWordAsArray;
 
 //initializes var hiddenWord to be defined later by random number or api.
@@ -66,7 +64,7 @@ startGame();
 
 //requests api, converts response to json, stores as hiddenWord, creates blanks.
 //the await blocks the code within the function while code outside runs
-//this allows hiddenword assinged the value BEFORE calling the functions that require it.
+//this allows hiddenword to be assigned a value BEFORE calling the functions that require it.
 //which was the problem i had in the earlier version.
 async function makeRequest() {
     let response = await fetch(url);
@@ -83,7 +81,7 @@ function startGame() {
 }
 
 //create blanks: this adds children (class='blank') to the word-container div.
-// these are the blank spots that represent the hidden word, and are revealed with correct guesses.
+//these are the blank spots that represent the hidden word, and are revealed with correct guesses.
 function createBlanks() {
     for (i=0; i<hiddenWord.length; i++) {
         wordContainer.appendChild(document.createElement('div'))
@@ -211,7 +209,6 @@ function reset(){
         wordContainer.innerHTML = '';
         drawHangman();
         makeRequest();
-        message.className = 'hide';
         showAlphabet();
         document.addEventListener('click', hideLetter);   
     }
