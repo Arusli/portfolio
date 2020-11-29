@@ -1,0 +1,70 @@
+/* body {
+    background-color: pink;
+} */
+
+h1 {
+    color: purple;
+}
+
+button {
+    border-radius: 1rem;
+    font-weight: bold;
+    font-size: 20px;
+    height: 60px;
+    width: 220px;
+}
+
+#button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.counters {
+    text-align: center;
+    /* display: flex;
+    flex-direction: row; */
+}
+
+/* #section1 {
+} */
+
+#rest {
+    font-size: 2.5rem;
+    color: purple;
+    border: solid 2px;
+    padding: 1.25rem;
+    background-color: white;
+}
+
+#timer {
+    font-size: 1.5rem;
+    color: grey;
+    border: solid 2px;
+    padding: 1.25rem;
+    background-color: white;
+}
+
+#section2 {
+    font-size: 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#section3 {
+    text-align: center;
+}
+
+#exercise {
+    color: red;
+    font-size: 4rem;
+}
